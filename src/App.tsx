@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import agent from "./agent";
 import BrevStacks from "./BrevStacks";
+import Login from "./Login";
+import AuthContextProvider, { AuthContext } from "./AuthContext";
 
 function App() {
   const [text, setText] = useState("Powered");
@@ -19,12 +20,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <BrevStacks />
-        <p>{text} Brev</p>
-      </header>
-    </div>
+    <AuthContextProvider>
+      <div className="App">
+        <header className="App-header">
+          <BrevStacks />
+          <p>{text} Brev</p>
+          <Login />
+        </header>
+      </div>
+    </AuthContextProvider>
   );
 }
 
